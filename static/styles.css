@@ -1,0 +1,101 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 5mm;
+}
+
+ul {
+  list-style: none;
+  width: 425px;    
+  margin-left: 232px;
+  margin-bottom: 0%;
+}
+
+form {
+  background-color: rgb(219, 219, 219);
+}
+
+th {
+  color: rgb(225, 0, 0);
+}
+
+tr {
+  height: 50px;
+}
+
+li {
+  width: 400px;
+}
+
+body {
+  background-color: rgb(7, 0, 48);
+}
+
+button {
+  width: 400px;
+  height: 40px;
+  text-align: left;
+  border-top-style: solid;
+  border-bottom-style: none;
+  border-left: none;
+  border-right: none;
+  border-top-color: grey;
+}
+
+.weight {
+  width: 160px;
+  height: 40px;
+}
+
+.name {
+  width: 225px;
+}
+
+.hight {
+  width: 70px;
+}
+
+.debut {
+  width: 130px;
+}
+
+.hometown {
+  width: 125px;
+}
+
+.input-control {
+  height: 50px;
+  width: 400px;
+  margin-left: 20px;
+  background-color: rgb(219, 219, 219);
+}
+
+.hide {
+  display: none;
+}
+
+.box {
+  height: 400px;
+  padding-top: 20px;
+  display: grid;
+  justify-content: center;
+  background-color: rgb(219, 219, 219);
+}
+
+.form-control {
+  border: none;
+  display: grid;
+  justify-content: center;
+  margin-top: 10%;
+  width: 100%;
+  background-color: rgb(219, 219, 219);
+  border-radius: 0%;
+}
+
+.mydiv {
+  text-align: center;
+  margin-top: 200px;
+  padding-bottom: 20px;
+  width: 100%;
+  background-color: rgb(7, 0, 48);
+}
+

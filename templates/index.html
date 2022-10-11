@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link href="static/styles.css" rel="stylesheet">
+        <script src="static/scripts.js" defer></script>
+        <title>Ufc figher guessing game</title>
+    </head>
+    <header>
+        How to play
+    </header>
+    <div>
+        UFC Fighter guessing game
+    </div>
+    <body>
+        <div class="mydiv">
+            <form action="/" id="form" method="post" autocomplete="off">
+                <div class="form-control">
+                    <input class="input-control" id="answer" name="answer" type="text" autocomplete="off" placeholder="name" required></input>
+                    
+                </div>
+                <ul></ul>
+            </form>
+            <div class="box">
+                <table class="table table-sm align-middle">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Hometown</th>
+                            <th>Debut</th>
+                            <th>Age</th>
+                            <th>Weightclass</th>
+                            <th>Height</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for guess in guesses %}
+                            {% for item in guess %}
+                            <tr>
+                                <td class="name">{{item['name'] | title}}</tb>
+                                <td class="hometown">{{item['hometown']}}</tb>
+                                <td class="debut">{{item['debut']}}</tb>
+                                <td class="age">{{item['age']}}</tb>
+                                <td class="weight">{{item['weight']}}</tb>
+                                <td class="height">{{item['height'] | inch_to_ft}}</tb>
+                            </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+        
+    <div id="div1" data-fighters='{{ FIGHTERS | tojson }}'></div>
+    <div id="div2" data-random='{{ answer | tojson }}'></div>
+</html> 
