@@ -6,7 +6,7 @@
 ul {
   list-style: none;
   width: 425px;    
-  margin-left: 232px;
+  margin-left: 724px;
   margin-bottom: 0%;
 }
 
@@ -40,7 +40,6 @@ button {
 
 .weight {
   width: 160px;
-  
 }
 
 .name {
@@ -64,7 +63,6 @@ button {
   width: 400px;
   margin-left: 20px;
   background-color: rgb(219, 219, 219);
-  justify-content: center;
 }
 
 .hide {
@@ -72,7 +70,6 @@ button {
 }
 
 .box {
-  
   padding-top: 20px;
   display: grid;
   justify-content: center;
@@ -84,6 +81,7 @@ button {
   display: grid;
   justify-content: center;
   padding-top: 60px;
+  padding-bottom: 0px;
   width: 100%;
   background-color: rgb(219, 219, 219);
 }

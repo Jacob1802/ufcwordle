@@ -15,8 +15,7 @@ FIGHTERS = get_fighters_names()
 FIGHTERS.sort()
 random_fighter = FIGHTERS[random.randint(0, len(FIGHTERS) - 1)].title()
 db = connect_db()
-answer = db.execute("SELECT * FROM fighters WHERE name = 'conor mcgregor'")[0]
-# answer = db.execute("SELECT * FROM fighters WHERE name = ?", random_fighter.lower())[0]
+answer = db.execute("SELECT * FROM fighters WHERE name = ?", random_fighter.lower())[0]
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
