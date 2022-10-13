@@ -39,6 +39,7 @@
                     <tbody>
                         {% for guess in guesses %}
                             {% for item in guess %}
+                            <div class="high" data-t='{{ item["height"] | tojson }}'></div>
                             <tr>
                                 <td class="name">{{item['name'] | title}}</tb>
                                 <td class="hometown">{{item['hometown']}}</tb>
@@ -54,7 +55,6 @@
             </div>
         </div>
     </body>
-        
     <div id="div1" data-fighters='{{ FIGHTERS | tojson }}'></div>
     <div id="div2" data-random='{{ answer | tojson }}'></div>
 </html> 

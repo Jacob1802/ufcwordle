@@ -124,14 +124,13 @@ function check(){
         set_colours("weight", allowance, guess_weight, random_fighter_weight, i);
     }   
 
-    var height = document.getElementsByClassName("height");
+    var height = document.getElementsByClassName("high");
     allowance = 3;
+
     for (let i = 0; i < height.length; i++)
     {
-        let arr = height[i].innerHTML.trim().split("'");
-        let guess_height = Math.round(parseFloat(arr[0] + "." + arr[1]) * 12);
+        let guess_height = parseFloat(JSON.parse(height[i].dataset.t));
         let random_fighter_height = parseFloat(random_fighter.height);
-        console.log(guess_height, random_fighter_height);
         set_colours("height", allowance, guess_height, random_fighter_height, i);
     }
 

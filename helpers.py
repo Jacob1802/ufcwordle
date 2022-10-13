@@ -20,4 +20,3 @@ def inch_to_ft(value):
     value = f"{float(value) / 12:.1f}"
     foot, inch = value.split(".")
     return foot + "'" + inch + '"'
-
