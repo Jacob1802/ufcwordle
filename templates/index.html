@@ -10,11 +10,37 @@
         <title>Ufc figher guessing game</title>
     </head>
     <header>
-        How to play
+        <div class="twin">
+            UFC wordle
+            <button id="myBtn">&#10068</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>How to play</h2>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="how-to-ul">
+                            <li class="how-to-li">You get 7 guesses to pick the random fighter</li>
+                            <li class="how-to-li">Enter any male fighter in the top 15 found on https://www.ufc.com/rankings</li>
+                            <li class="how-to-li"><span class="yellow">Yellow in the debut</span> column indicates the debut of the random fighter was within 1 year</li>
+                            <li class="how-to-li"><span class="yellow">Yellow in the age</span> column indicates the debut of the random fighter was within 3 years</li>
+                            <li class="how-to-li"><span class="yellow">Yellow in the weightclass</span> column indicates the debut of the random fighter was within 2 weightclasses</li>
+                            <li class="how-to-li"><span class="yellow">Yellow in the height</span> column indicates the debut of the random fighter was within 3"</li>
+                            <li class="how-to-li"><span class="green">Green in any column</span> indicates a match</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        ...
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
-    <div>
-        UFC Fighter guessing game
-    </div>
     <body>
         <div class="mydiv">
             <form action="/" id="form" method="post" autocomplete="off">
@@ -22,7 +48,7 @@
                     <input class="input-control" id="answer" name="answer" type="text" autocomplete="off" placeholder="name" required></input>
                     
                 </div>
-                <ul></ul>
+                <ul id="auto-comp"></ul>
             </form>
             <div class="box">
                 <table class="table table-sm align-middle">

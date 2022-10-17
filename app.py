@@ -26,7 +26,7 @@ def index():
 
     global num_guesses
     num_guesses += 1
-
+    
     name = request.form.get("answer").lower()
 
     if name in FIGHTERS:
