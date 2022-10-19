@@ -1,42 +1,46 @@
-from flask import Flask, render_template, request, redirect, Response
+from flask import Flask, render_template, request, redirect, Response, session, flash
 from fighters import get_fighters_names
-from helpers import connect_db, inch_to_ft, get_fighters_names
-import random
+from helpers import connect_db, inch_to_ft, get_fighters_names, pick_random_fighter
 import json
  
 app = Flask(__name__)
-
+app.secret_key = "543216789"
 app.jinja_env.filters["inch_to_ft"] = inch_to_ft
 
 guesses = []
 num_guesses = 0
 
-FIGHTERS = get_fighters_names()
-FIGHTERS.sort()
-random_fighter = FIGHTERS[random.randint(0, len(FIGHTERS) - 1)].title()
-db = connect_db()
-answer = db.execute("SELECT * FROM fighters WHERE name = ?", random_fighter.lower())[0]
+fighter_names = get_fighters_names()
+fighter_names.sort()
+answer = pick_random_fighter()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     db = connect_db()
-
-    if request.method == "GET":
-        return render_template("index.html", FIGHTERS=json.dumps(FIGHTERS), answer=answer) 
-
-    global num_guesses
-    num_guesses += 1
     
+    global num_guesses
+    
+    if request.method == "GET":
+        return render_template("index.html", fighter_names=json.dumps(fighter_names), answer=answer) 
+
     name = request.form.get("answer").lower()
 
-    if name in FIGHTERS:
+    if num_guesses > 6:
+        flash("Better luck next time!")  
+    elif answer['name'] == name:
+        flash("Correct!")
+
+    if name in fighter_names:
         guesses.append(db.execute("SELECT name, hometown, debut, age, weight, height, reach, legreach FROM fighters WHERE name = ?", name))
-        FIGHTERS.remove(name)
+        fighter_names.remove(name)
         print("Success")
-        return render_template("index.html", guesses=guesses, FIGHTERS=json.dumps(FIGHTERS),  answer=answer) 
+        num_guesses += 1
+        print(num_guesses)
+
+        return render_template("index.html", num_guesses=num_guesses, guesses=guesses, fighter_names=json.dumps(fighter_names),  answer=answer) 
 
     print("Error")
-    return render_template("index.html", guesses=guesses, FIGHTERS=json.dumps(FIGHTERS),  answer=answer)
+    return render_template("index.html",num_guesses=num_guesses, guesses=guesses, fighter_names=json.dumps(fighter_names),  answer=answer)
  
 if __name__ == '__main__':
     app.run(debug=True)

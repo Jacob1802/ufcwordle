@@ -1,18 +1,20 @@
 // document.addEventListener("DOMContentLoaded", function(event) { 
 
-var f = JSON.parse(document.getElementById("div1").dataset.fighters);
-var fighters = JSON.parse(f);
-console.log(fighters);
+var f = JSON.parse(document.getElementById("div1").dataset.fighternames);
+var fighternames = JSON.parse(f);
+console.log(fighternames);
 var random_fighter = JSON.parse(document.getElementById("div2").dataset.random);
 console.log(random_fighter);
 var input = document.querySelector('input');
+
+localStorage.setItem("random_fighter", document.getElementById("div2").dataset.random)
 input.addEventListener('keyup', function(event) 
 {
     document.querySelector('#auto-comp').style.display = "block";
     let html = '';
     if (input.value) 
     {
-        for (var names of fighters) 
+        for (var names of fighternames) 
         {
             if (names.startsWith(input.value)) 
             {                    
@@ -46,6 +48,18 @@ list.addEventListener('click', function(e)
         list.style.display = "none";
     }
 });
+
+
+function track_guesses(name) {
+    let guesses = parseInt(document.getElementById("div3").dataset.numguesses);
+    if (guesses === 7)
+    {
+        let input = document.querySelector('input');
+        input.value = name;
+        document.form.submit();
+        input.disabled = true;
+    }
+}
 
 
 function set_colours(string, allowance, guess, fighter_stat, i) 
@@ -141,6 +155,7 @@ function check(){
         {
             let target = document.querySelectorAll("tr");
             target[i + 1].style.backgroundColor = "rgb(0, 255, 0)";
+            document.querySelector('input').disabled = true;
         }
     }
 }
@@ -174,5 +189,11 @@ function modal(){
     }
 }
 
-modal()
-check()
+
+localStorage.setItem("table", document.querySelector("table").innerHTML);
+
+document.querySelector("table").innerHTML = localStorage.getItem("table");
+
+document.addEventListener('DOMContentLoaded', track_guesses(random_fighter.name));
+modal();
+check();

@@ -55,6 +55,11 @@ header {
   font-weight: 700;
 }
 
+#auto-comp {
+  list-style: none;
+  padding-left: 24px;
+}
+
 .auto-comp-list {
   width: 400px;
   text-align: left;
@@ -103,6 +108,8 @@ header {
   height: 50px;
   width: 400px;
   background-color: rgb(219, 219, 219);
+  padding-left: 5px;
+  margin-left: 24px;
 }
 
 .hide {
@@ -117,7 +124,6 @@ header {
 }
 
 .form-control {
-  display: grid;
   justify-content: center;
   padding-top: 2%;
   width: 100%;
