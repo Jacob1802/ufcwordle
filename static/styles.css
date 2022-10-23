@@ -15,6 +15,10 @@ th:not(:last-child), td:not(:last-child) {
   border-right: 1px solid black;
 }
 
+.red {
+  background-color: rgb (255,0,0);
+}
+
 thead {
   border-bottom: black;
 }

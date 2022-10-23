@@ -59,12 +59,11 @@ function track_guesses(name, input) {
     {
         input.value = name;
         document.form.submit();
-        input.disabled = true;
     }
 }
 
 
-function set_colours(string, allowance, guess, fighter_stat, i) 
+function set_correct_colour(string, allowance, guess, fighter_stat, i) 
 {
     var target = document.querySelectorAll(`.${string}`);
     if (guess === fighter_stat)
@@ -92,9 +91,11 @@ function check(){
     }
 
     // check guess for hometown and change color
+    var row_of_guesses = 0;
     var hometown = document.getElementsByClassName("hometown");
     for (let i = 0; i < hometown.length; i++)
     {
+        row_of_guesses++;
         if (hometown[i].innerHTML.trim() === random_fighter.hometown.trim())
         {
             let target = document.querySelectorAll(".hometown");
@@ -105,7 +106,7 @@ function check(){
     // check guess for debut and change color
     var debut = document.getElementsByClassName("debut");
     var allowance = 1;
-    for (let i = 0; i < debut.length; i++)
+    for (let i = 0; i < row_of_guesses; i++)
     {
         let arr = debut[i].innerHTML.trim().split(",");
         let guess_year = parseInt(arr[arr.length - 1]);
@@ -113,48 +114,58 @@ function check(){
         let farr = random_fighter.debut.trim().split(",");
         let random_fighter_year = parseInt(farr[farr.length - 1]);
 
-        set_colours("debut", allowance, guess_year, random_fighter_year, i);
+        set_correct_colour("debut", allowance, guess_year, random_fighter_year, i);
     }
 
     // check guess for age and change color
     var age = document.getElementsByClassName("age");
     allowance = 3;
-    for (let i = 0; i < age.length; i++)
+    for (let i = 0; i < row_of_guesses; i++)
     {
         let guess_age = age[i].innerHTML;
         let random_fighter_age = parseInt(random_fighter.age);
-        set_colours("age", allowance, guess_age, random_fighter_age, i);
+        set_correct_colour("age", allowance, guess_age, random_fighter_age, i);
     }
     
     // check guess for weight and change color
     var weight = document.getElementsByClassName("weight");
     allowance = 2;
-    for (let i = 0; i < weight.length; i++)
+    for (let i = 0; i < row_of_guesses; i++)
     {
         let guess_weight = weight_class[weight[i].innerHTML.trim()];
         let random_fighter_weight = weight_class[random_fighter.weight.trim()];
-        set_colours("weight", allowance, guess_weight, random_fighter_weight, i);
+        set_correct_colour("weight", allowance, guess_weight, random_fighter_weight, i);
     }   
 
     // check guess for height and change color
     var height = document.getElementsByClassName("high");
     allowance = 3;
 
-    for (let i = 0; i < height.length; i++)
+    for (let i = 0; i < row_of_guesses; i++)
     {
         let guess_height = Math.floor(parseFloat(JSON.parse(height[i].dataset.t)));
         let random_fighter_height = parseFloat(random_fighter.height);
-        set_colours("height", allowance, guess_height, random_fighter_height, i);
+        set_correct_colour("height", allowance, guess_height, random_fighter_height, i);
     }
 
     // check guess for fighter_name and change color
     var fighter_name = document.getElementsByClassName("name");
-    for (let i = 0; i < fighter_name.length; i++)
+    for (let i = 0; i < row_of_guesses; i++)
     {
+        var target = document.querySelectorAll("tr");
         if (fighter_name[i].innerHTML.toLowerCase().trim() === random_fighter.name.trim())
         {
-            let target = document.querySelectorAll("tr");
             target[i + 1].style.backgroundColor = "rgb(0, 255, 0)";
+            document.querySelector('input').disabled = true;
+        }
+    }
+    
+    // sets colour for wrong guess
+    let guesses = parseInt(document.getElementById("div3").dataset.numguesses);
+    var t = document.querySelectorAll("td");
+    if (guesses === 8){
+        for (let i = 41; i < 47; i++) {
+            t[i + 1].style.backgroundColor = "rgb(255, 0, 0)";
             document.querySelector('input').disabled = true;
         }
     }
@@ -190,5 +201,6 @@ function modal(){
 }
 
 document.addEventListener('DOMContentLoaded', track_guesses(random_fighter.name, input));
+// set_wrong_colour()
 modal();
 check();

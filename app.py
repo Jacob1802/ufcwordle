@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, flash
-from fighters import get_fighters_names
 from helpers import connect_db, inch_to_ft, get_fighters_names, pick_random_fighter
 import json
  
@@ -38,6 +37,7 @@ def index():
         return render_template("index.html", num_guesses=num_guesses, guesses=guesses, fighter_names=json.dumps(fighter_names),  answer=answer) 
 
     return render_template("index.html",num_guesses=num_guesses, guesses=guesses, fighter_names=json.dumps(fighter_names),  answer=answer)
- 
+
+
 if __name__ == '__main__':
     app.run(debug=True)

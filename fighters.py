@@ -5,10 +5,10 @@ from helpers import connect_db
 def main():
     db = connect_db()
     set_fighters(db, get_fighters())
-    # get_fighters_names()
 
 
 def get_fighters():
+    """ Fetch fighter data from url """
     request = get("https://www.ufc.com/rankings")
     soup = BeautifulSoup(request.text, "html.parser")
     filtered_fighters = []
@@ -24,6 +24,7 @@ def get_fighters():
 
 
 def set_stats(items, name, db):
+    """ Sets fighter stats in a sqlite db"""
     for value in items:
         match value[0]:
             case "Hometown":
@@ -69,6 +70,7 @@ def set_stats(items, name, db):
 
 
 def set_weight(weights, name, db):
+    """ Set weights for fighters in sqlite db"""
     for weight in weights:
         if not weight:
             weight = ["Flyweight"]
@@ -84,6 +86,7 @@ def set_weight(weights, name, db):
 
 
 def set_fighters(db, fighters):
+    """ Set names for fighters in sqlite db"""
     count = 0
 
     for name in fighters:
@@ -129,16 +132,6 @@ def set_fighters(db, fighters):
             items.append(item)
         
         set_stats(items, name, db)
-
-
-def get_fighters_names():
-    db = connect_db()
-    result = db.execute("SELECT name FROM fighters")
-    fighters = []
-    for name in result:
-        fighters.append(name['name'])
-
-    return fighters
 
 
 if __name__ == "__main__":
