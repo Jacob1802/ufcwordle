@@ -1,5 +1,5 @@
-import cs50
 import random
+import cs50
 
 def connect_db():
     db = cs50.SQL("sqlite:///fighters.db")

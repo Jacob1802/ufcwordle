@@ -1,6 +1,6 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 5mm;
+  font-size: 4mm;
 }
 
 form {
@@ -25,7 +25,7 @@ td {
 
 header {
   display: flex;
-  width: 100%;
+  min-width: 400px;
   height: 50px;
 }
 
@@ -46,9 +46,8 @@ header {
 }
 
 .twin {
-  margin: 8px;
   height: inherit;
-  width: 100%;
+  min-width: 100%;
   text-align: center;
   color: rgb(255, 0, 0);
   font-size: xx-large;
@@ -58,10 +57,11 @@ header {
 #auto-comp {
   list-style: none;
   padding-left: 24px;
+  padding-right: 24px;
 }
 
-.auto-comp-list {
-  width: 400px;
+.auto-comp-button {
+  min-width: 300px;
   text-align: left;
   border-top-style: solid;
   border-bottom-style: none;
@@ -72,7 +72,7 @@ header {
 
 .head {
   display: inline;
-  width: 50%;
+  max-width: 50%;
   text-align: right;
 }
 
@@ -81,35 +81,29 @@ header {
 }
 
 .name {
-  width: 225px;
-  /* width: 30%; */
+  max-width: 225px;
 }
 
 .hometown {
-  width: 125px;
-  /* width: 20%; */
+  max-width: 125px;
 }
 
 .debut {
-  width: 130px;
-  /* width: 19%; */
+  max-width: 130px;
 }
 
 .weight {
-  width: 160px;
-  /* width: 20%; */
+  max-width: 160px;
 }
 
 .hight {
-  width: 70px;
-}
+  max-width: 70px;
+} 
 
 .input-control {
   height: 50px;
-  width: 400px;
+  min-width: 300px;
   background-color: rgb(219, 219, 219);
-  padding-left: 5px;
-  margin-left: 24px;
 }
 
 .hide {
@@ -118,6 +112,7 @@ header {
 
 .box {
   padding-top: 1%;
+  min-width: 400px;
   display: grid;
   justify-content: center;
   background-color: rgb(219, 219, 219);
@@ -132,9 +127,11 @@ header {
 
 .mydiv {
   text-align: center;
+  min-width: 300px;
+  justify-content: center;
   padding-bottom: 2%;
   margin-top: 2%;
-  width: 100%;
+  min-width: 400px;
   background-color: rgb(219, 219, 219);
 }
 
@@ -165,7 +162,7 @@ header {
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 14px;
   font-weight: bold;
   position: absolute;
   right: 0;
@@ -208,7 +205,7 @@ header {
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 44%;
+  max-width: 1050px;
   margin-top: 6%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   animation-name: animatetop;

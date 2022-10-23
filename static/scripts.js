@@ -1,60 +1,62 @@
-// document.addEventListener("DOMContentLoaded", function(event) { 
-
+// get data from flask app
 var f = JSON.parse(document.getElementById("div1").dataset.fighternames);
 var fighternames = JSON.parse(f);
-console.log(fighternames);
 var random_fighter = JSON.parse(document.getElementById("div2").dataset.random);
-console.log(random_fighter);
 var input = document.querySelector('input');
+input.addEventListener('keyup', autocompelte);
+console.log(fighternames);
+console.log(random_fighter);
 
-localStorage.setItem("random_fighter", document.getElementById("div2").dataset.random)
-input.addEventListener('keyup', function(event) 
+
+function autocompelte()
 {
-    document.querySelector('#auto-comp').style.display = "block";
     let html = '';
+    // check for input value
     if (input.value) 
     {
+        // iter through list of fighters
         for (var names of fighternames) 
         {
+            // create name 
             if (names.startsWith(input.value)) 
             {                    
-                var word = "";
+                var name = "";
                 for (let i = 0; i < names.length; i++)
                 {
                     if (names[i] === " ") {
-                        word += names[i];
-                        word += names[i + 1].toUpperCase();
+                        name += names[i];
+                        name += names[i + 1].toUpperCase();
                         i++;
                     }
                     else {
-                        word += names[i];
+                        name += names[i];
                     }
                 }
-                html += `<li><button class="auto-comp-list">${word.charAt(0).toUpperCase() + word.slice(1)}</button></li>`;
+                html += `<li><button class="auto-comp-button">${name.charAt(0).toUpperCase() + name.slice(1)}</button></li>`;
             }
         }
     }
-    document.querySelector('#auto-comp').innerHTML = html;
-});
-
-
-var list = document.querySelector('#auto-comp');
-list.addEventListener('click', function(e) 
-{
-    if (e.target.tagName.toLowerCase() === 'button')
+    var list = document.querySelector('#auto-comp');
+    // add names to ul
+    list.innerHTML = html;
+    // add li to input when clicekd 
+    list.addEventListener('click', function(e) 
     {
-        input.value = e.target.innerHTML;
+        if (e.target.tagName.toLowerCase() === 'button')
+        {
+            input.value = e.target.innerHTML;
 
-        list.style.display = "none";
-    }
-});
+            list.style.display = "none";
+        }
+    });
+};
 
 
-function track_guesses(name) {
+function track_guesses(name, input) {
     let guesses = parseInt(document.getElementById("div3").dataset.numguesses);
+    // show answer
     if (guesses === 7)
     {
-        let input = document.querySelector('input');
         input.value = name;
         document.form.submit();
         input.disabled = true;
@@ -69,17 +71,11 @@ function set_colours(string, allowance, guess, fighter_stat, i)
     {
         target[i].style.backgroundColor = "rgb(0, 255, 0)";
     }
-    // if guess no more than allowance lower
-    else if (guess < fighter_stat && guess >= (fighter_stat - allowance))
+    // if guess within allowance
+    else if (guess < fighter_stat && guess >= (fighter_stat - allowance) || guess > fighter_stat && guess <= (fighter_stat + allowance))
     {
         target[i].style.backgroundColor = "yellow";
     }
-    // if guess no more than allowance higher
-    else if (guess > fighter_stat && guess <= (fighter_stat + allowance))   
-    {
-        target[i].style.backgroundColor = "yellow";
-    }
-    
 }
 
 
@@ -95,6 +91,7 @@ function check(){
         "Heavyweight" : 8
     }
 
+    // check guess for hometown and change color
     var hometown = document.getElementsByClassName("hometown");
     for (let i = 0; i < hometown.length; i++)
     {
@@ -105,6 +102,7 @@ function check(){
         }
     }
 
+    // check guess for debut and change color
     var debut = document.getElementsByClassName("debut");
     var allowance = 1;
     for (let i = 0; i < debut.length; i++)
@@ -118,7 +116,7 @@ function check(){
         set_colours("debut", allowance, guess_year, random_fighter_year, i);
     }
 
-    
+    // check guess for age and change color
     var age = document.getElementsByClassName("age");
     allowance = 3;
     for (let i = 0; i < age.length; i++)
@@ -128,7 +126,7 @@ function check(){
         set_colours("age", allowance, guess_age, random_fighter_age, i);
     }
     
-
+    // check guess for weight and change color
     var weight = document.getElementsByClassName("weight");
     allowance = 2;
     for (let i = 0; i < weight.length; i++)
@@ -138,16 +136,18 @@ function check(){
         set_colours("weight", allowance, guess_weight, random_fighter_weight, i);
     }   
 
+    // check guess for height and change color
     var height = document.getElementsByClassName("high");
     allowance = 3;
 
     for (let i = 0; i < height.length; i++)
     {
-        let guess_height = parseFloat(JSON.parse(height[i].dataset.t));
+        let guess_height = Math.floor(parseFloat(JSON.parse(height[i].dataset.t)));
         let random_fighter_height = parseFloat(random_fighter.height);
         set_colours("height", allowance, guess_height, random_fighter_height, i);
     }
 
+    // check guess for fighter_name and change color
     var fighter_name = document.getElementsByClassName("name");
     for (let i = 0; i < fighter_name.length; i++)
     {
@@ -189,11 +189,6 @@ function modal(){
     }
 }
 
-
-localStorage.setItem("table", document.querySelector("table").innerHTML);
-
-document.querySelector("table").innerHTML = localStorage.getItem("table");
-
-document.addEventListener('DOMContentLoaded', track_guesses(random_fighter.name));
+document.addEventListener('DOMContentLoaded', track_guesses(random_fighter.name, input));
 modal();
 check();

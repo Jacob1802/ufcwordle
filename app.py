@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, Response, session, flash
+from flask import Flask, render_template, request, flash
 from fighters import get_fighters_names
 from helpers import connect_db, inch_to_ft, get_fighters_names, pick_random_fighter
 import json
@@ -33,13 +33,10 @@ def index():
     if name in fighter_names:
         guesses.append(db.execute("SELECT name, hometown, debut, age, weight, height, reach, legreach FROM fighters WHERE name = ?", name))
         fighter_names.remove(name)
-        print("Success")
         num_guesses += 1
-        print(num_guesses)
 
         return render_template("index.html", num_guesses=num_guesses, guesses=guesses, fighter_names=json.dumps(fighter_names),  answer=answer) 
 
-    print("Error")
     return render_template("index.html",num_guesses=num_guesses, guesses=guesses, fighter_names=json.dumps(fighter_names),  answer=answer)
  
 if __name__ == '__main__':
