@@ -1,244 +1,200 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 4mm;
+  font-family: 'Roboto', sans-serif;
 }
 
-form {
-  background-color: rgb(219, 219, 219);
-}
-
-tr:not(:last-child) {
-  border-bottom: 1px solid rgb(0, 0, 0);
-}
-
-th:not(:last-child), td:not(:last-child) {
-  border-right: 1px solid black;
-}
-
-.red {
-  background-color: rgb (255,0,0);
-}
-
-thead {
-  border-bottom: black;
-}
-
-td {
-  height: 70px;
+body {
+  background-color: #f8f9fa;
+  color: #212529;
 }
 
 header {
-  display: flex;
-  min-width: 400px;
-  height: 50px;
-}
-
-.yellow {
-  display: inline;
-  background-color: yellow;
-  font-size: inherit;
-}
-
-.green {
-  display: inline;
-  background-color: rgb(0, 255, 0);
-  font-size: inherit;
-}
-
-.text {
-  display: inline;
-}
-
-.twin {
-  height: inherit;
-  min-width: 100%;
-  text-align: center;
-  color: rgb(255, 0, 0);
-  font-size: xx-large;
-  font-weight: 700;
-}
-
-#auto-comp {
-  list-style: none;
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
-.auto-comp-button {
-  min-width: 300px;
-  text-align: left;
-  border-top-style: solid;
-  border-bottom-style: none;
-  border-left: none;
-  border-right: none;
-  border-top-color: grey;
-}
-
-.head {
-  display: inline;
-  max-width: 50%;
-  text-align: right;
-}
-
-.test {
-  justify-content: center;
-}
-
-.name {
-  max-width: 225px;
-}
-
-.hometown {
-  max-width: 125px;
-}
-
-.debut {
-  max-width: 130px;
-}
-
-.weight {
-  max-width: 160px;
-}
-
-.hight {
-  max-width: 70px;
-} 
-
-.input-control {
-  height: 50px;
-  min-width: 300px;
-  background-color: rgb(219, 219, 219);
-}
-
-.hide {
-  display: none;
-}
-
-.box {
-  padding-top: 1%;
-  min-width: 400px;
-  display: grid;
-  justify-content: center;
-  background-color: rgb(219, 219, 219);
-}
-
-.form-control {
-  justify-content: center;
-  padding-top: 2%;
-  width: 100%;
-  background-color: rgb(219, 219, 219);
-}
-
-.mydiv {
-  text-align: center;
-  min-width: 300px;
-  justify-content: center;
-  padding-bottom: 2%;
-  margin-top: 2%;
-  min-width: 400px;
-  background-color: rgb(219, 219, 219);
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 14px;
-  font-weight: bold;
-  position: absolute;
-  right: 0;
-  transform: translate(0, -50%);
-  top: 5%;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Modal Header */
-.modal-header {
-  padding: 2px 16px;
-  justify-content: center;
-  background-color: rgb(255, 0, 0);
-  color: white;
-}
-
-/* Modal Body */
-.modal-body {
-  text-align: center;
-}
-
-/* Modal Footer */
-.modal-footer {
-  padding: 2px 16px;
-  background-color: rgb(255, 0, 0);
-  color: rgb(255, 0, 0);
-}
-
-/* Modal Content */
-.modal-content {
+  padding: 1rem;
+  background-color: #343a40;
+  color: #ffffff;
   position: relative;
-  font-size: small;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  max-width: 1050px;
-  margin-top: 6%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s;
 }
 
-/* Add Animation */
-@keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+  width: 100%; /* Ensure the title takes the full width */
+}
+
+button {
+  font-size: 1rem;
 }
 
 #myBtn {
-  position: absolute;
-  right: .1%;
-  transform: translate(0, -50%);
-  top: 2%;
-  font-size: 5mm;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  background: none;
   border: none;
-  background-color: white;
+  color: #ffffff;
+  position: absolute; /* Ensure the button is positioned absolutely */
 }
 
-.how-to-ul {
-  display: inline-block;
+.mydiv {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input.form-control {
+  height: 3rem;
+  font-size: 1.25rem;
+}
+
+.table {
+  margin-top: 1rem;
+}
+
+.table thead {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50%; /* Adjusted width */
+  max-width: 1000px; /* Maximum width */
+  margin: auto;
+  top: 50%; /* Positioning */
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+  padding: 1rem;
+}
+
+.modal-header, .modal-body, .modal-footer {
+  text-align: left; /* Center the text */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  background-color: rgb(219, 54, 70);
+  color: #ffffff;
+}
+
+.modal-body {
+  flex: 1;
+  padding: 1rem;
+}
+
+.close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.list-group-item {
+  font-size: 1rem;
+}
+
+.mydiv {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Autocomplete styles */
+.input-group {
+  position: relative;
+}
+
+#auto-comp {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  max-height: 200px; /* Limit height */
+  overflow-y: auto; /* Enable scrolling */
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#auto-comp li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+#auto-comp li:hover,
+#auto-comp li:focus {
+  background-color: #f8f9fa;
+}
+
+#auto-comp li button {
+  width: 100%;
+  background: none;
+  border: none;
   text-align: left;
-  color: black;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
 }
 
-.how-to-li {
-  font-size: 4.5mm;
-  font-weight: 100;
+.box {
+  margin-top: 1rem;
+}
+
+.table thead {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+.btn-restart {
+  color: #fff;  /* White text */
+  background-color: rgb(219, 54, 70);  /* A shade of red that matches the modal header */
+  border-color: #c32f3f;  /* Slightly darker for the border */
+}
+
+.btn-restart:hover {
+  color: #fff;  /* Keep text white on hover for consistency */
+  background-color: #c32f3f;  /* Darker red on hover */
+  border-color: #b12835;  /* Even darker border to give a subtle effect */
+}
+
+.btn-restart {
+  padding: 0.75rem 1.5rem; /* Increase padding for a larger, more clickable area */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
+}
+
+.btn-restart:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Increased shadow on hover for depth */
 }

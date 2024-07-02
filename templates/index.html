@@ -1,65 +1,56 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="initial-scale=1, width=device-width">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <link href="static/styles.css" rel="stylesheet">
-        <script src="static/scripts.js" defer></script>
-        <title>Ufc figher guessing game</title>
-    </head>
-    <header>
-        <div class="twin">
-            UFC wordle
-            <button id="myBtn">&#10068</button>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>How to play</h2>
-                        <span class="close">&times;</span>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="how-to-ul">
-                            <li class="how-to-li">You get 7 guesses to pick the random fighter</li>
-                            <li class="how-to-li">Enter any male fighter in the top 15 found on https://www.ufc.com/rankings</li>
-                            <li class="how-to-li"><span class="yellow">Yellow in the debut</span> column indicates the debut of the random fighter was within 1 year</li>
-                            <li class="how-to-li"><span class="yellow">Yellow in the age</span> column indicates the debut of the random fighter was within 3 years</li>
-                            <li class="how-to-li"><span class="yellow">Yellow in the weightclass</span> column indicates the debut of the random fighter was within 2 weightclasses</li>
-                            <li class="how-to-li"><span class="yellow">Yellow in the height</span> column indicates the debut of the random fighter was within 3"</li>
-                            <li class="how-to-li"><span class="green">Green in any column</span> indicates a match</li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        ...
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="static/styles.css" rel="stylesheet">
+    <script src="static/scripts.js" defer></script>
+    <title>UFC Fighter Guessing Game</title>
+</head>
+<body>
+    <header class="d-flex justify-content-center align-items-center p-3 bg-dark text-white position-relative">
+        <h1 class="mb-0 text-center">UFC Wordle</h1>
+        <button id="myBtn" class="position-absolute">&#10068;</button>
+    </header>
+    <div class="container my-4">
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>How to Play</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">You get 7 guesses to pick the random fighter</li>
+                        <li class="list-group-item">Enter any male fighter in the top 15 found on <a href="https://www.ufc.com/rankings" target="_blank">UFC Rankings</a></li>
+                        <li class="list-group-item"><span class="badge bg-warning text-dark">Yellow</span> in the debut column indicates the debut of the random fighter was within 1 year</li>
+                        <li class="list-group-item"><span class="badge bg-warning text-dark">Yellow</span> in the age column indicates the age of the random fighter is within 3 years</li>
+                        <li class="list-group-item"><span class="badge bg-warning text-dark">Yellow</span> in the weightclass column indicates the weightclass of the random fighter is within 2 weightclasses</li>
+                        <li class="list-group-item"><span class="badge bg-warning text-dark">Yellow</span> in the height column indicates the height of the random fighter is within 3"</li>
+                        <li class="list-group-item"><span class="badge bg-success">Green</span> in any column indicates a match</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </header>
-    <body>
-        <div class="mydiv">
+        <div class="mydiv text-center">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for msg in messages %}
-                        <p>{{msg}}</p>
+                        <div class="alert alert-info">{{msg}}</div>
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <form action="/" id="form" method="post" autocomplete="off" name="form">
-                <div class="form-control">
-                    <input autofocus class="input-control" id="answer" name="answer" type="text" autocomplete="off" placeholder="Enter a name" required></input>
-                
-                    <ul id="auto-comp"></ul>
+            <form action="/" id="form" method="post" autocomplete="off" name="form" class="mb-4">
+                <div class="input-group">
+                    <input autofocus class="form-control" id="guess" name="guess" type="text" autocomplete="off" placeholder="Enter a name" required>
+                    <ul id="auto-comp" class="list-group"></ul>
                 </div>
             </form>
-            <div class="box">
-                <table class="tbl table table-sm align-middle">
-                    <thead>
+            <div class="box table-responsive">
+                <table class="table table-bordered table-hover" id="guessesTable">
+                    <thead class="table-dark">
                         <tr>
                             <th>Name</th>
                             <th>Hometown</th>
@@ -71,24 +62,22 @@
                     </thead>
                     <tbody>
                         {% for guess in guesses %}
-                            {% for item in guess %}
-                            <div class="high" data-t='{{ item["height"] | tojson }}'></div>
                             <tr>
-                                <td class="name">{{item['name'] | title}}</tb>
-                                <td class="hometown">{{item['hometown']}}</tb>
-                                <td class="debut">{{item['debut']}}</tb>
-                                <td class="age">{{item['age']}}</tb>
-                                <td class="weight">{{item['weight']}}</tb>
-                                <td class="height">{{item['height'] | inch_to_ft}}</tb>
+                                <td style="background-color: {{ guess.colours['name'] }}">{{guess['name'] | title}}</td>
+                                <td style="background-color: {{ guess.colours['hometown'] }}">{{guess['hometown']}}</td>
+                                <td style="background-color: {{ guess.colours['debut'] }}">{{ guess['debut'] }}</td>
+                                <td style="background-color: {{ guess.colours['age'] }}">{{ guess['age'] }}</td>
+                                <td style="background-color: {{ guess.colours['weight'] }}">{{ guess['weight'] }}</td>
+                                <td style="background-color: {{ guess.colours['height'] }}">{{ guess['height'] | inch_to_ft}}</td>
                             </tr>
-                            {% endfor %}
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
-    </body>
-    <div id="div1" data-fighternames='{{ fighter_names | tojson }}'></div>
-    <div id="div2" data-random='{{ answer | tojson }}'></div>
-    <div id="div3" data-numguesses='{{ num_guesses }}'></div>
-</html> 
+    </div>
+    <div class="container my-4 text-center">
+        <a href="/reset_game" class="btn btn-restart btn-lg">Restart Game</a>
+    </div>
+</body>
+</html>
