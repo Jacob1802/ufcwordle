@@ -1,5 +1,5 @@
 # UFC Wordle
-#### Video Demo:  <https://youtu.be/0NrDy9jxLAI>
+#### Video Demo:  <https://www.youtube.com/watch?v=Z1tKxDoCpRY>
 # Features
 
 - **Seven Guesses:** Players have up to seven guesses to find the correct fighter.
